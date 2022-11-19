@@ -233,6 +233,7 @@ addi $v0, $s3, 0
 
 # return to main program
 jr $ra
+
 invalidChar:
 li $v0, -1
 jr $ra
