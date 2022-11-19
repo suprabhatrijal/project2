@@ -227,6 +227,10 @@ slt $t1, $s0, $t1
 li $t2, 1
 beq $t1, $t2 loop # if not ($s4 == NULL or $s4 == ENTER)then loop
 
+addi $v0, $s3, 0
+
+# return to main program
+jr $ra
 invalidChar:
 li $v0, -1
 jr $ra
