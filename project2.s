@@ -221,3 +221,8 @@ j loopCOTD
 invalidChar:
 li $v0, -1
 jr $ra
+
+
+oneChar:
+li $s1, 1
+j fixedEdgeCase
