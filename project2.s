@@ -21,7 +21,6 @@ addi $s0, $v0, 0
 addi $s1, $v1, 0
 li $t1, 1
 
-j exit
 
 # if $s1 is less than 1
 slti $t1, $s1, 1
@@ -39,6 +38,13 @@ syscall
 li $v0, 11
 addi $a0, $zero, 44
 syscall
+
+# print the decimal number
+addi $a0, $s0, 0
+li $v0, 1
+syscall
+
+j exit
 
 exit:
 # exit
