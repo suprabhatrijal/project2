@@ -51,6 +51,12 @@ exit:
 li $v0, 10
 syscall
 
+printInvalid:
+li $v0, 4
+la $a0, invalid_output
+syscall
+j exit
+
 base_to_decimal:
 # go through the string find the address of start and end of string without spaces or tabs
 
