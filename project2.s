@@ -1,6 +1,6 @@
 .data
 input: .space 1001
-input_prompt: .asciiz "Input: "
+invalid_output: .asciiz "Unrecognized input"
 .text
 main:
 
