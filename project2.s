@@ -20,8 +20,6 @@ beq $v0, $t1, printInvalid
 addi $s0, $v0, 0
 addi $s1, $v1, 0
 li $t1, 1
-
-
 # if $s1 is less than 1
 slti $t1, $s1, 1
 li $t2, 1
@@ -45,6 +43,7 @@ li $v0, 1
 syscall
 
 j exit
+
 
 exit:
 # exit
@@ -78,20 +77,18 @@ li $t2, 1
 bne $t1, $t2 notSpace # if not ($s4 == SPACE or $s4 == SPACE)
 
 j firstPassCOTD
-
 notSpace:
 li $t1, 1
 beq $s0, $t1, firstCharEncountered
 addi $s5, $s2, 0 # save the address in #s5
-
 li $s0, 1
 
 j firstPassCOTD
 
+
 firstCharEncountered:
 addi $s6, $s2, 0 # save the address in #s5
 j firstPassCOTD
-# return to main program
 
 firstPassCOTD:
 # set the register t2 to point at the next character
@@ -111,6 +108,8 @@ bne $t1, $t2 firstPass # if not ($s4 == NULL or $s4 == ENTER)then loop
 
 # length of string = end-start +1
 sub $t1, $s6, $s5
+
+
 addi $t1, $t1, 1
 
 # if $t1 > 4 then it is an invalid char
@@ -134,7 +133,6 @@ li $s2, 0
 li $s4, 0
 li $s5, 0
 li $s6, 0
-
 
 li $s3, 0 # sum of all numbers
 
@@ -177,6 +175,7 @@ and $t0, $t0, $t1
 li $t1, 1
 # if char >= 97 and char < 123
 beq $t0, $t1, Lower
+
 # character falls in the range  'A' to 'Y'
 
 # char < 65
@@ -190,11 +189,11 @@ slti $t1, $s4, 90
 
 and $t0, $t0, $t1
 li $t1, 1
-
 # if char >= 65 and char < 90
 beq $t0, $t1, Upper
 
 j invalidChar
+
 Number:
 addi $t1, $s4, -48
 li $t2, 30
@@ -203,7 +202,6 @@ mflo $s3
 add $s3, $s3, $t1 
 
 j loopCOTD
-
 
 Lower:
 addi $t1, $s4, -87
@@ -223,7 +221,6 @@ add $s3, $s3, $t1
 
 j loopCOTD
 
-
 loopCOTD:
 # set the register t2 to point at the next character
 addi $s0, 1
@@ -239,7 +236,6 @@ jr $ra
 invalidChar:
 li $v0, -1
 jr $ra
-
 
 oneChar:
 li $s1, 1
