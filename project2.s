@@ -29,5 +29,12 @@ addi $s2, $a0, 0 # Address of the input string
 firstPass:
 lb $s4, 0($s2) # current character
 
+### if char is space or tab
+li $t1, 32
+li $t2, 9
+seq $t3, $s4, $t1 # $s4 == SPACE
+seq $t4, $s4, $t2 # $s4 == TAB
+
+
 # return to main program
 jr $ra
