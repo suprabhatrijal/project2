@@ -248,6 +248,11 @@ beq $t1, $t2 loop # if current address < the address of null or enter char then 
 # loop ends then add the decimal value to return register and return
 addi $v0, $s3, 0
 
+# reset all the $s registers
+li $s0, 0
+li $s1, 0
+li $s2, 0
+li $s3, 0
 # return to main program
 jr $ra
 
