@@ -218,6 +218,15 @@ add $s3, $s3, $t1
 
 j loopCOTD
 
+
+loopCOTD:
+# set the register t2 to point at the next character
+addi $s0, 1
+addi $t1, $s1, 1
+slt $t1, $s0, $t1
+li $t2, 1
+beq $t1, $t2 loop # if not ($s4 == NULL or $s4 == ENTER)then loop
+
 invalidChar:
 li $v0, -1
 jr $ra
