@@ -138,6 +138,9 @@ nor $t0, $t0, $zero
 slti $t1, $s4, 122
 
 and $t0, $t0, $t1
+li $t1, 1
+# if char >= 97 and char < 123
+beq $t0, $t1, Lower
 
 Number:
 addi $t1, $s4, -48
@@ -147,6 +150,12 @@ mflo $s3
 add $s3, $s3, $t1 
 
 j loopCOTD
+
+
+Lower:
+addi $t1, $s4, -87
+li $t2, 30
+mult $t2, $s3
 
 invalidChar:
 li $v0, -1
