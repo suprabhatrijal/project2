@@ -84,3 +84,7 @@ nor $t2, $t2, $zero
 li $t1, 0xffffffff
 
 beq $t1, $t2, invalidChar
+
+invalidChar:
+li $v0, -1
+jr $ra
