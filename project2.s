@@ -19,11 +19,10 @@ beq $v0, $t1, printInvalid
 # else print the decimal number
 addi $s0, $v0, 0
 addi $s1, $v1, 0
-li $t1, 1
 # if $s1 is less than 1
 slti $t1, $s1, 1
 li $t2, 1
-beq $t1, $t1 oneChar
+beq $t2, $t1 oneChar
 j fixedEdgeCase
 
 fixedEdgeCase:
