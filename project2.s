@@ -154,6 +154,11 @@ slti $t1, $s4, 90
 
 and $t0, $t0, $t1
 li $t1, 1
+
+# if char >= 65 and char < 90
+beq $t0, $t1, Upper
+
+j invalidChar
 Number:
 addi $t1, $s4, -48
 li $t2, 30
@@ -173,6 +178,10 @@ add $s3, $s3, $t1
 
 j loopCOTD
 
+Upper:
+addi $t1, $s4, -55
+li $t2, 30
+mult $t2, $s3
 invalidChar:
 li $v0, -1
 jr $ra
