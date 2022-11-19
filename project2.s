@@ -99,6 +99,22 @@ li $s4, 0
 li $s5, 0
 li $s6, 0
 
+
+li $s3, 0 # sum of all numbers
+
+j loop
+
+
+
+
+loop:
+lb $s4, 0($s0) # current character
+
+# character falls in the range  '0' to '9'
+
+# char < 47
+slti $t0, $s4, 48 
+
 invalidChar:
 li $v0, -1
 jr $ra
