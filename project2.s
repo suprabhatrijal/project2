@@ -75,3 +75,12 @@ bne $t1, $t2 firstPass # if not ($s4 == NULL or $s4 == ENTER)then loop
 
 # length of string = end-start +1
 sub $t1, $s6, $s5
+addi $t1, $t1, 1
+
+# if $t1 > 4 then it is an invalid char
+# not $t1 < 5 ====> $t1 >= 5
+slti $t2, $t1, 5
+nor $t2, $t2, $zero
+li $t1, 0xffffffff
+
+beq $t1, $t2, invalidChar
