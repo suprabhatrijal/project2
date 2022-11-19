@@ -156,6 +156,10 @@ Lower:
 addi $t1, $s4, -87
 li $t2, 30
 mult $t2, $s3
+mflo $s3
+add $s3, $s3, $t1 
+
+j loopCOTD
 
 invalidChar:
 li $v0, -1
