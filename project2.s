@@ -85,6 +85,14 @@ li $t1, 0xffffffff
 
 beq $t1, $t2, invalidChar
 
+sub $t1, $s6, $s5
+
+addi $v1, $t1, 1
+
+addi $s0, $s5, 0  # Address of the start of the string
+addi $s1, $s6, 0 # Address of the end of the string
+
+
 invalidChar:
 li $v0, -1
 jr $ra
