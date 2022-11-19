@@ -35,6 +35,15 @@ li $t2, 9
 seq $t3, $s4, $t1 # $s4 == SPACE
 seq $t4, $s4, $t2 # $s4 == TAB
 
+or $t1, $t3, $t4 # $s4 == SPACE or $s4 == TAB
+li $t2, 1
+## else if not space or tab $v0 = -1 and jr $ra
+bne $t1, $t2 notSpace # if not ($s4 == SPACE or $s4 == SPACE)
+j firstPassCOTD
+notSpace:
+li $t1, 1
+beq $s0, $t1, firstCharEncountered
+addi $s5, $s2, 0 # save the address in #s5
 
 # return to main program
 jr $ra
