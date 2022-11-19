@@ -66,3 +66,12 @@ lb $s4, 0($s2) # current character
 li $t1, 0
 li $t2, 10
 seq $t3, $s4, $t1 # $s4 == NULL
+seq $t4, $s4, $t2 # $s4 == ENTER
+
+or $t1, $t3, $t4 # $s4 == NULL or $s4 == ENTER
+li $t2, 1
+bne $t1, $t2 firstPass # if not ($s4 == NULL or $s4 == ENTER)then loop
+
+
+# length of string = end-start +1
+sub $t1, $s6, $s5
