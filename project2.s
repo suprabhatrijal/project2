@@ -56,3 +56,13 @@ addi $s6, $s2, 0 # save the address in #s5
 j firstPassCOTD
 # return to main program
 jr $ra
+
+firstPassCOTD:
+# set the register t2 to point at the next character
+addi $s2, 1
+
+lb $s4, 0($s2) # current character
+# increment the counter variable
+li $t1, 0
+li $t2, 10
+seq $t3, $s4, $t1 # $s4 == NULL
