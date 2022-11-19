@@ -126,6 +126,13 @@ li $t1, 1
 # if char >= 48 and char < 58
 beq $t0, $t1, Number
 
+Number:
+addi $t1, $s4, -48
+li $t2, 30
+mult $t2, $s3
+mflo $s3
+add $s3, $s3, $t1 
+
 invalidChar:
 li $v0, -1
 jr $ra
