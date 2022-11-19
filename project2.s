@@ -151,6 +151,7 @@ j loop
 
 
 loop:
+beq $s0, $zero, invalidChar
 lb $s4, 0($s0) # current character
 
 # character falls in the range  '0' to '9'
