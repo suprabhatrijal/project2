@@ -196,7 +196,7 @@ j invalidChar
 
 Number:
 addi $t1, $s4, -48
-li $t2, 30
+li $t2, 35
 mult $t2, $s3
 mflo $s3
 add $s3, $s3, $t1 
@@ -205,7 +205,7 @@ j loopCOTD
 
 Lower:
 addi $t1, $s4, -87
-li $t2, 30
+li $t2, 35
 mult $t2, $s3
 mflo $s3
 add $s3, $s3, $t1 
@@ -214,7 +214,7 @@ j loopCOTD
 
 Upper:
 addi $t1, $s4, -55
-li $t2, 30
+li $t2, 35
 mult $t2, $s3
 mflo $s3
 add $s3, $s3, $t1 
