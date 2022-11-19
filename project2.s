@@ -10,16 +10,17 @@ la $a0, input
 li $a1, 1001
 syscall
 
+# use the input as parameter and call the base_to_decimal function
 la $a0, input
 jal base_to_decimal
 
 # if the function returns -1 print invalid input
 li $t1, -1
 beq $v0, $t1, printInvalid
-# else print the decimal number
+# else print the output
 addi $s0, $v0, 0
 addi $s1, $v1, 0
-# if $s1 is less than 1
+# if $s1 is less than 1 handle edge case
 slti $t1, $s1, 1
 li $t2, 1
 beq $t2, $t1 oneChar
@@ -50,13 +51,14 @@ li $v0, 10
 syscall
 
 printInvalid:
+# print the invalid output message
 li $v0, 4
 la $a0, invalid_output
 syscall
 j exit
 
 base_to_decimal:
-# go through the string find the address of start and end of string without spaces or tabs
+# go through the string find the address of start and end of string removing spaces
 
 # initialize the loop
 li $s0, 0 # flag which is true if first valid char has been encountered
@@ -72,13 +74,17 @@ seq $t4, $s4, $t2 # $s4 == TAB
 
 or $t1, $t3, $t4 # $s4 == SPACE or $s4 == TAB
 li $t2, 1
-## else if not space or tab $v0 = -1 and jr $ra
+## if not space or tab go to notSpace
 bne $t1, $t2 notSpace # if not ($s4 == SPACE or $s4 == SPACE)
 
+# if it is space or tab continue
 j firstPassCOTD
+
 notSpace:
 li $t1, 1
+# if the first non space non tab char encountered store the location and continue
 beq $s0, $t1, firstCharEncountered
+# else store the location of current non space non tab char to $s5
 addi $s5, $s2, 0 # save the address in #s5
 li $s0, 1
 
@@ -117,10 +123,13 @@ slti $t2, $t1, 5
 nor $t2, $t2, $zero
 li $t1, 0xffffffff
 
+# length is greater than 4 then it is invalid input
 beq $t1, $t2, invalidChar
 
 sub $t1, $s6, $s5
 
+
+# if valid input then save the length as return value
 addi $v1, $t1, 1
 
 addi $s0, $s5, 0  # Address of the start of the string
@@ -133,6 +142,7 @@ li $s4, 0
 li $s5, 0
 li $s6, 0
 
+# initialize the second pass
 li $s3, 0 # sum of all numbers
 
 j loop
@@ -194,7 +204,9 @@ beq $t0, $t1, Upper
 j invalidChar
 
 Number:
+# convert ascii into number
 addi $t1, $s4, -48
+# sum = sum*35 + cur_number
 li $t2, 35
 mult $t2, $s3
 mflo $s3
@@ -203,7 +215,9 @@ add $s3, $s3, $t1
 j loopCOTD
 
 Lower:
+# convert ascii into number
 addi $t1, $s4, -87
+# sum = sum*35 + cur_number
 li $t2, 35
 mult $t2, $s3
 mflo $s3
@@ -212,7 +226,9 @@ add $s3, $s3, $t1
 j loopCOTD
 
 Upper:
+# convert ascii into number
 addi $t1, $s4, -55
+# sum = sum*35 + cur_number
 li $t2, 35
 mult $t2, $s3
 mflo $s3
@@ -223,11 +239,13 @@ j loopCOTD
 loopCOTD:
 # set the register t2 to point at the next character
 addi $s0, 1
+
 addi $t1, $s1, 1
 slt $t1, $s0, $t1
 li $t2, 1
-beq $t1, $t2 loop # if not ($s4 == NULL or $s4 == ENTER)then loop
+beq $t1, $t2 loop # if current address < the address of null or enter char then loop
 
+# loop ends then add the decimal value to return register and return
 addi $v0, $s3, 0
 
 # return to main program
