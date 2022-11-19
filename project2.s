@@ -86,7 +86,6 @@ firstCharEncountered:
 addi $s6, $s2, 0 # save the address in #s5
 j firstPassCOTD
 # return to main program
-jr $ra
 
 firstPassCOTD:
 # set the register t2 to point at the next character
