@@ -29,6 +29,17 @@ li $t2, 1
 beq $t1, $t1 oneChar
 j fixedEdgeCase
 
+fixedEdgeCase:
+# print the length
+addi $a0, $s1, 0
+li $v0, 1
+syscall
+
+#print comma
+li $v0, 11
+addi $a0, $zero, 44
+syscall
+
 exit:
 # exit
 li $v0, 10
