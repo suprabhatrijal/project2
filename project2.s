@@ -23,6 +23,12 @@ li $t1, 1
 
 j exit
 
+# if $s1 is less than 1
+slti $t1, $s1, 1
+li $t2, 1
+beq $t1, $t1 oneChar
+j fixedEdgeCase
+
 exit:
 # exit
 li $v0, 10
