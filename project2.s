@@ -13,6 +13,14 @@ syscall
 la $a0, input
 jal base_to_decimal
 
+# if the function returns -1 print invalid input
+li $t1, -1
+beq $v0, $t1, printInvalid
+# else print the decimal number
+addi $s0, $v0, 0
+addi $s1, $v1, 0
+li $t1, 1
+
 j exit
 
 exit:
